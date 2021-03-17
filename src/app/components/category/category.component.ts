@@ -7,10 +7,11 @@ import { CategoryService } from 'src/app/services/category.service';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit 
+{
 
   categories : Category[] =[];
-  currentCategory : Category={categoryName:"", categoryId:0};
+  currentCategory : Category;
 
   constructor(private categoryService:CategoryService) { }
 
@@ -26,6 +27,21 @@ export class CategoryComponent implements OnInit {
     
   }
   setCurrentCategory(category:Category){
-    console.log(category.categoryName)
+    this.currentCategory = category;
   }
+
+  getCurrentCategoryClass(category:Category){
+    if(category ==this.currentCategory){
+      return"list-group-item active"
+    }else{
+      return "list-group-item "
+    }
+  }
+  getAllByCategoryClass(){
+    if(!this.currentCategory){
+    return"list-group-item active"
+  }else{
+    return "list-group-item "
+  }
+}
 }
